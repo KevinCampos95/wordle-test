@@ -11,7 +11,7 @@ export const Dialog = (props: DialogProps) => {
     <DialogMaterial
       {...props}
       ref={dialogRef}
-      className='border border-black bg-paper03 px-8 pb-2 pt-12 text-black'
+      className={`${props.className} border border-black bg-paper03 px-8 pb-2 pt-12 text-black`}
     />
   );
 };

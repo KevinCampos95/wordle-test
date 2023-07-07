@@ -26,6 +26,7 @@ theme: {
       '546': '546px',
     },
     maxWidth: {
+      '546': '546px',
       '638': '638px',
     },
     lineHeight: {

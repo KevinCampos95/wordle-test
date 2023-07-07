@@ -17,7 +17,7 @@ function App() {
       <Dialog
         open={openDialog}
         handler={handlerCloseDialog}
-        className='text-left'
+        className='min-w-546 md:min-w-546 lg:min-w-546 2xl:min-w-546 w-546 max-w-546 md:w-546 md:max-w-546 lg:w-546 lg:max-w-546 2xl:w-546 2xl:max-w-546'
       >
         <div className='font-size mb-8 text-center text-4xl font-extrabold'>
           Cómo jugar
