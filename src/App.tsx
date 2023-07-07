@@ -1,7 +1,5 @@
 import './App.css';
 import TopBar from './components/topbar';
-import { useState } from 'react';
-import InstructionsDialog from './components/dialogs/InstructionsDialog';
 
 function App() {
   return (

@@ -22,7 +22,10 @@ export const TopBar = () => {
         <StatisticsIcon className='cursor-pointer' />
         <Switch />
       </div>
-      <InstructionsDialog open={openDialog} handler={handlerCloseDialog} />
+      <InstructionsDialog
+        openDialog={openDialog}
+        handler={handlerCloseDialog}
+      />
     </div>
   );
 };
