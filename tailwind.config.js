@@ -15,14 +15,16 @@ theme: {
       'paper01': '#F9F9F9',
       'paper02': 'rgba(218, 220, 224, 0.3)',
       'paper03': '#F3F3F3',
-      'letter-default': 'background: rgba(147, 155, 159, 1)',
-      'letter-warning': 'rgba(206, 176, 44, 1)',
-      'letter-success': 'background: rgba(255, 255, 255, 1)',
+      'letterCard-bg-default': '#D3D6DA',
+      'letterCard-bg-warning': '#CEB02C',
+      'letterCard-bg-success': '#66A060',
     },
     height: {
+      '76': '76px',
       '84': '84px',
     },
     width: {
+      '75': '75px',
       '546': '546px',
     },
     maxWidth: {
