@@ -1,31 +1,46 @@
 import { useState } from 'react';
 import { ReactComponent as QuestionIcon } from '../../assets/question-icon.svg';
 import { ReactComponent as StatisticsIcon } from '../../assets/statistics-icon.svg';
-import { Switch } from '@material-tailwind/react';
 import InstructionsDialog from '../dialogs/InstructionsDialog';
+import StatisticsDialog from '../dialogs/StatisticsDialog';
 
 export const TopBar = () => {
-  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [openInstructionsDialog, setOpenInstructionsDialog] =
+    useState<boolean>(false);
+  const [openStatisticsDialog, setOpenStatisticsDialog] =
+    useState<boolean>(false);
 
-  const handlerCloseDialog = () => {
-    setOpenDialog(false);
+  const handlerOpenInstructionsDialog = () => {
+    setOpenInstructionsDialog(true);
+  }
+
+  const handlerOpenStatisticsDialog = () => {
+    setOpenStatisticsDialog(true);
+  }
+
+  const handlerCloseInstructionsDialog = () => {
+    setOpenInstructionsDialog(false);
+  };
+
+  const handlerCloseStatisticsDialog = () => {
+    setOpenStatisticsDialog(false);
   };
 
   return (
     <div className='flex h-84 w-screen max-w-638 items-center justify-between rounded-2xl bg-paper01 px-4 py-2'>
       <QuestionIcon
         className='cursor-pointer'
-        onClick={() => setOpenDialog(true)}
+        onClick={handlerOpenInstructionsDialog}
       />
       <div className='text-4xl font-semibold leading-48'>WORDLE</div>
       <div className='flex gap-1'>
-        <StatisticsIcon className='cursor-pointer' />
-        <Switch />
+        <StatisticsIcon className='cursor-pointer' onClick={handlerOpenStatisticsDialog} />
       </div>
       <InstructionsDialog
-        openDialog={openDialog}
-        handler={handlerCloseDialog}
+        openDialog={openInstructionsDialog}
+        handler={handlerCloseInstructionsDialog}
       />
+      <StatisticsDialog openDialog={openStatisticsDialog} handler={handlerCloseStatisticsDialog} />
     </div>
   );
 };
