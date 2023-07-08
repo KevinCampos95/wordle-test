@@ -1,9 +1,10 @@
 import { ReactNode, MouseEvent } from "react";
 
-export interface typedLetterProps {
-    letter: string,
-    backgroundColor?: string,
-    border?: string 
+export interface TypedLetterProps {
+    letter: string;
+    backgroundColor?: string;
+    letterColor?: string;
+    border?: string;
 }
 
 export interface InstructionsDialogProps {
@@ -25,5 +26,6 @@ export interface LetterCardProps {
 
 export interface KeyboardCardProps {
     onKeyPress: (key: string) => void;
+    typedLetters?: TypedLetterProps[];
 }
   

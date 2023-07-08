@@ -1,7 +1,7 @@
 import { LetterCardBackgrounds } from "./enums";
-import { typedLetterProps } from "./types";
+import { TypedLetterProps } from "./types";
 
-export const exampleLettersFirstRow: typedLetterProps[] = [
+export const exampleLettersFirstRow: TypedLetterProps[] = [
     { letter: 'G', backgroundColor: LetterCardBackgrounds.Success },
     { letter: 'A', border: 'border border-black' },
     { letter: 'T', border: 'border border-black' },
@@ -9,7 +9,7 @@ export const exampleLettersFirstRow: typedLetterProps[] = [
     { letter: 'S', border: 'border border-black' },
   ];
 
-  export const exampleLettersSecondRow: typedLetterProps[] = [
+  export const exampleLettersSecondRow: TypedLetterProps[] = [
     { letter: 'V', border: 'border border-black' },
     { letter: 'O', border: 'border border-black' },
     { letter: 'C', backgroundColor: LetterCardBackgrounds.Warning },
@@ -17,7 +17,7 @@ export const exampleLettersFirstRow: typedLetterProps[] = [
     { letter: 'L', border: 'border border-black' },
   ];
 
-  export const exampleLettersThirdRow: typedLetterProps[] = [
+  export const exampleLettersThirdRow: TypedLetterProps[] = [
     { letter: 'C', border: 'border border-black' },
     { letter: 'A', border: 'border border-black' },
     { letter: 'N', border: 'border border-black' },
