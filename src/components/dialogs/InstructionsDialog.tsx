@@ -6,11 +6,7 @@ import {
   exampleLettersSecondRow,
   exampleLettersThirdRow,
 } from '../../global/constants';
-
-interface InstructionsDialogProps {
-  openDialog: boolean;
-  handler: () => void;
-}
+import { InstructionsDialogProps } from '../../global/types';
 
 export const InstructionsDialog = (props: InstructionsDialogProps) => {
   const { handler, openDialog } = props;

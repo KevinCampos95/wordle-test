@@ -1,13 +1,5 @@
 import { LetterCardBackgrounds } from '../../../global/enums';
-
-interface LetterCardProps {
-  letter: string;
-  letterColor?: string;
-  backgroundColor?: string;
-  border?: string;
-  width?: string;
-  height?: string;
-}
+import { LetterCardProps } from '../../../global/types';
 
 export const LetterCard = (props: LetterCardProps) => {
   const {
@@ -17,12 +9,16 @@ export const LetterCard = (props: LetterCardProps) => {
     border = '',
     width = 'w-75',
     height = 'h-76',
+    className,
+    icon,
+    onClick,
   } = props;
   return (
     <div
-      className={`${letter} ${letterColor} ${backgroundColor} ${border} ${width} ${height} flex items-center justify-center rounded text-4xl font-extrabold`}
+      className={`${className} ${letter} ${letterColor} ${backgroundColor} ${border} ${width} ${height} flex select-none items-center justify-center rounded text-4xl font-extrabold`}
+      onClick={onClick}
     >
-      {letter}
+      {icon || letter}
     </div>
   );
 };

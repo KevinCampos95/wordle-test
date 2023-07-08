@@ -4,10 +4,6 @@ import { ReactComponent as StatisticsIcon } from '../../assets/statistics-icon.s
 import InstructionsDialog from '../dialogs/InstructionsDialog';
 import StatisticsDialog from '../dialogs/StatisticsDialog';
 
-interface TopBarProps {
-  isFirstLogin: boolean;
-}
-
 export const TopBar = () => {
   const [openInstructionsDialog, setOpenInstructionsDialog] =
     useState<boolean>(false);
