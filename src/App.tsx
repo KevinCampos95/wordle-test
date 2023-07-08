@@ -10,9 +10,21 @@ function App() {
         <TopBar />
         <LetterInputs
           items={[
-            { letter: 'C', backgroundColor: 'bg-green' },
-            { letter: 'C', backgroundColor: 'bg-green' },
-            { letter: 'C', backgroundColor: 'bg-green' },
+            {
+              letter: 'C',
+              backgroundColor: 'bg-letterCard-bg-success',
+              letterColor: 'text-white',
+            },
+            {
+              letter: 'C',
+              backgroundColor: 'bg-letterCard-bg-success',
+              letterColor: 'text-white',
+            },
+            {
+              letter: 'C',
+              backgroundColor: 'bg-letterCard-bg-success',
+              letterColor: 'text-white',
+            },
           ]}
         />
         <KeyboardCard onKeyPress={(key: string) => console.log(key)} />

@@ -28,7 +28,7 @@ const LetterInputs: React.FC<LetterInputsProps> = ({ items = [] }) => {
       {letters.map((_, index) => (
         <LetterCard
           key={index}
-          letter='A'
+          letter=''
           backgroundColor={LetterCardBackgrounds.Error}
         />
       ))}
