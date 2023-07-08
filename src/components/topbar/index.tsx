@@ -35,7 +35,7 @@ export const TopBar = () => {
   }, []);
 
   return (
-    <div className='flex h-84 w-screen max-w-638 items-center justify-between rounded-2xl bg-paper01 px-4 py-2'>
+    <div className='flex h-84 w-screen max-w-638 items-center justify-between rounded-15 bg-paper01 px-4 py-2'>
       <QuestionIcon
         className='cursor-pointer'
         onClick={handlerOpenInstructionsDialog}

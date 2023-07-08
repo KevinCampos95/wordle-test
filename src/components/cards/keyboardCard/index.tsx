@@ -4,7 +4,7 @@ import { ReactComponent as UnionIcon } from '../../../assets/union-icon.svg';
 import { KeyboardCardProps } from '../../../global/types';
 import { LetterCardBackgrounds } from '../../../global/enums';
 
-export const KeyboardCard = (props: KeyboardCardProps) => {
+export const KeyboardCard: React.FC<KeyboardCardProps> = props => {
   const {
     onKeyPress,
     typedLetters = [
@@ -31,8 +31,6 @@ export const KeyboardCard = (props: KeyboardCardProps) => {
     onKeyPress(key);
   };
 
-  console.log(typedLetters);
-
   const keyboard = qwertyKeyboard.map((item, index) => {
     const typedLetter = typedLetters.find(
       typedItem => typedItem.letter === item,
@@ -43,7 +41,6 @@ export const KeyboardCard = (props: KeyboardCardProps) => {
     let letterColor: string = 'text-letterCard-text-default';
 
     if (typedLetter) {
-      console.log(typedLetter);
       border = typedLetter.border || '';
       backgroundColor = typedLetter.backgroundColor || '';
       letterColor = 'text-white';
@@ -63,7 +60,7 @@ export const KeyboardCard = (props: KeyboardCardProps) => {
 
   return (
     <div
-      className={`flex h-fit w-638 max-w-638 flex-wrap justify-center gap-3 rounded bg-paper02 px-4 py-6`}
+      className={`flex h-fit w-638 max-w-638 flex-wrap justify-center gap-3 rounded-15 bg-paper02 px-4 py-6`}
     >
       {keyboard}
       <LetterCard
