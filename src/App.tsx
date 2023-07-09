@@ -5,12 +5,13 @@ import LetterInputs from './components/LetterInputs';
 import KeyboardCard from './components/cards/keyboardCard';
 import { selectRandomWord } from './global/utils';
 import { TypedLetterProps } from './global/types';
-import { type } from 'os';
+import { validateLetters } from './global/utils';
 
 function App() {
   const [secretWord, setSecretWord] = useState<string[]>([]);
   const [typedLetters, setTypedLetters] = useState<TypedLetterProps[]>([]);
   const [hasTypedLetter, setHasTypedLetter] = useState<boolean>(false);
+  const [attemps, setAttemps] = useState<number>(1);
 
   const fetchWords = async () => {
     try {
@@ -21,7 +22,10 @@ function App() {
         .split('\n')
         .filter((word: string) => word.length === 5)
         .map((word: string) =>
-          word.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+          word
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toUpperCase(),
         );
 
       const randomWord = selectRandomWord(lengthFilteredLetters);
@@ -34,7 +38,7 @@ function App() {
   };
 
   const handleKeyDown = (event: KeyboardEvent): void => {
-    if (event.key.match(/[a-zñA-ZÑ]/i) && !hasTypedLetter) {
+    if (!hasTypedLetter) {
       const pressedKey: string = event.key.toUpperCase();
 
       handleTypedLetter(pressedKey);
@@ -46,7 +50,9 @@ function App() {
   };
 
   const handleTypedLetter = (letter: string) => {
+    if (letter.length !== 1 || !letter.match(/[a-zñA-ZÑ]/i)) return;
     if (typedLetters.length >= 25) return;
+
     const typedLetter: TypedLetterProps = {
       letter: letter,
       backgroundColor: 'bg-letterCard-bg-success',
@@ -73,6 +79,16 @@ function App() {
       setHasTypedLetter(false);
     };
   }, [hasTypedLetter]);
+
+  useEffect(() => {
+    if (typedLetters.length !== 0 && typedLetters.length % 5 === 0) {
+      const letterStatuses = validateLetters(secretWord, typedLetters, attemps);
+      setAttemps(prevAttemps => prevAttemps + 1);
+      console.log(letterStatuses);
+    }
+  }, [secretWord, typedLetters]);
+
+  console.log(secretWord);
 
   return (
     <div className='App mt-8 flex h-screen w-full justify-center font-roboto text-black'>
