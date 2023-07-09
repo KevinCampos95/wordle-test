@@ -8,9 +8,9 @@ interface LetterInputsProps {
 }
 
 const LetterInputs: React.FC<LetterInputsProps> = ({ items = [] }) => {
-  const [emptyCards, setEmptyCards] = useState<number>(22);
+  const [emptyCards, setEmptyCards] = useState<number>(25);
 
-  const matchedItems = items.slice(0, emptyCards).map((item, index) => {
+  const matchedItems = items.slice(0, items.length).map((item, index) => {
     const letterCardProps = {
       letter: item.letter,
       backgroundColor: item.backgroundColor,
@@ -19,6 +19,12 @@ const LetterInputs: React.FC<LetterInputsProps> = ({ items = [] }) => {
     };
     return <LetterCard key={index} {...letterCardProps} />;
   });
+
+  useEffect(() => {
+    if (items.length) {
+      setEmptyCards(emptyCards - 1);
+    }
+  }, [items]);
 
   return (
     <div className='mb-8 mt-16 flex w-638 max-w-638 flex-wrap justify-center gap-3 px-20'>

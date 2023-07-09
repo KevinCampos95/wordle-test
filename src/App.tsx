@@ -5,6 +5,7 @@ import LetterInputs from './components/LetterInputs';
 import KeyboardCard from './components/cards/keyboardCard';
 import { selectRandomWord } from './global/utils';
 import { TypedLetterProps } from './global/types';
+import { type } from 'os';
 
 function App() {
   const [secretWord, setSecretWord] = useState<string[]>([]);
@@ -45,6 +46,7 @@ function App() {
   };
 
   const handleTypedLetter = (letter: string) => {
+    if (typedLetters.length >= 25) return;
     const typedLetter: TypedLetterProps = {
       letter: letter,
       backgroundColor: 'bg-letterCard-bg-success',
@@ -76,25 +78,7 @@ function App() {
     <div className='App mt-8 flex h-screen w-full justify-center font-roboto text-black'>
       <div>
         <TopBar />
-        <LetterInputs
-          items={[
-            {
-              letter: 'C',
-              backgroundColor: 'bg-letterCard-bg-success',
-              letterColor: 'text-white',
-            },
-            {
-              letter: 'C',
-              backgroundColor: 'bg-letterCard-bg-success',
-              letterColor: 'text-white',
-            },
-            {
-              letter: 'C',
-              backgroundColor: 'bg-letterCard-bg-success',
-              letterColor: 'text-white',
-            },
-          ]}
-        />
+        <LetterInputs items={typedLetters} />
         <KeyboardCard onKeyPress={handleKeyDownKeyboard} />
       </div>
     </div>
