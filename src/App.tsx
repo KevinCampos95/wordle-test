@@ -75,6 +75,7 @@ function App() {
     setTypedLetters([]);
     setHasTypedLetter(false);
     setResetEmptyCards(true);
+    setOpenStatistics(false);
   };
 
   useEffect(() => {
@@ -93,8 +94,6 @@ function App() {
       setHasTypedLetter(false);
     };
   }, [hasTypedLetter]);
-
-  console.log(typedLetters);
 
   useEffect(() => {
     if (typedLetters.length !== 0 && typedLetters.length % 5 === 0) {
@@ -127,7 +126,6 @@ function App() {
         `${Number(localStorage.getItem('games')) + 1}` || '0';
 
       localStorage.setItem('games', playedGames);
-      console.log(attemps);
 
       setOpenStatistics(true);
     }

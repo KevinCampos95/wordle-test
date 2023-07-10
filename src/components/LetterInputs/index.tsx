@@ -18,9 +18,20 @@ const LetterInputs: React.FC<LetterInputsProps> = props => {
     return <LetterCard key={index} {...letterCardProps} />;
   });
 
+  const emptyItems = Array.from({ length: emptyCards }).map((_, index) => (
+    <LetterCard
+      key={index}
+      letter=''
+      backgroundColor={LetterCardBackgrounds.Error}
+    />
+  ));
+
   useEffect(() => {
     if (items.length) {
-      setEmptyCards(emptyCards - 1);
+      const emptyCount: number = 25 - items.length;
+      console.log(items.length, emptyCards, '-------------');
+
+      setEmptyCards(emptyCount);
     }
   }, [items]);
 
@@ -32,15 +43,8 @@ const LetterInputs: React.FC<LetterInputsProps> = props => {
   }, [resetCards]);
 
   return (
-    <div className='mb-8 mt-16 flex w-638 max-w-638 flex-wrap justify-center gap-3 px-20'>
-      {matchedItems}
-      {Array.from({ length: emptyCards }).map((_, index) => (
-        <LetterCard
-          key={index}
-          letter=''
-          backgroundColor={LetterCardBackgrounds.Error}
-        />
-      ))}
+    <div className='mb-8 mt-16 flex max-h-427 w-638 max-w-638 flex-wrap justify-center gap-3 px-20'>
+      {matchedItems.concat(emptyItems)}
     </div>
   );
 };
