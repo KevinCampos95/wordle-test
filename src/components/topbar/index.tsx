@@ -31,10 +31,10 @@ export const TopBar: React.FC<TopBarProps> = props => {
   };
 
   useEffect(() => {
-    const isFirstLogin = !localStorage.getItem('first_login');
-    if (isFirstLogin) {
+    const isFirstLogin = localStorage.getItem('first_login');
+    if (!isFirstLogin) {
       handlerOpenInstructionsDialog();
-      localStorage.setItem('first_login', 'true');
+      localStorage.setItem('first_login', 'false');
       localStorage.setItem('games', '0');
       localStorage.setItem('wins', '0');
     }

@@ -69,3 +69,16 @@ export const arraysAreEqual = (array1: any[], array2: any[]): boolean => {
 
   return true;
 };
+
+export const validateWinGame = (
+  letters: TypedLetterProps[],
+  secretWord: Array<string>,
+): boolean => {
+  const successLetters: Array<string> = letters
+    .filter(letter => letter.backgroundColor === 'bg-letterCard-bg-success')
+    .map(letter => letter.letter);
+
+  const isWinner: boolean = arraysAreEqual(successLetters, secretWord);
+
+  return isWinner;
+};

@@ -5,7 +5,11 @@ import LetterInputs from './components/LetterInputs';
 import KeyboardCard from './components/cards/keyboardCard';
 import { selectRandomWord } from './global/utils';
 import { TypedLetterProps } from './global/types';
-import { validateLetters, arraysAreEqual } from './global/utils';
+import {
+  validateLetters,
+  arraysAreEqual,
+  validateWinGame,
+} from './global/utils';
 
 function App() {
   const [secretWord, setSecretWord] = useState<string[]>([]);
@@ -90,7 +94,7 @@ function App() {
     };
   }, [hasTypedLetter]);
 
-  console.log(secretWord);
+  console.log(typedLetters);
 
   useEffect(() => {
     if (typedLetters.length !== 0 && typedLetters.length % 5 === 0) {
@@ -102,6 +106,15 @@ function App() {
       );
 
       if (isTypedLettersValidated) return;
+
+      const isWinner = validateWinGame(validatedTypedLetters, secretWord);
+
+      if (isWinner) {
+        const currentWins: string =
+          `${Number(localStorage.getItem('wins')) + 1}` || '0';
+        localStorage.setItem('wins', currentWins);
+        setOpenStatistics(true);
+      }
 
       setAttemps(prevAttemps => prevAttemps + 1);
       setTypedLetters(validatedTypedLetters);
