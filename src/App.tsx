@@ -97,9 +97,6 @@ function App() {
 
   useEffect(() => {
     if (typedLetters.length !== 0 && typedLetters.length % 5 === 0) {
-      const attempsCounter: number = attemps + 1;
-      setAttemps(attempsCounter);
-
       const validatedTypedLetters = validateLetters(secretWord, typedLetters);
 
       const isTypedLettersValidated: boolean = arraysAreEqual(
@@ -109,12 +106,19 @@ function App() {
 
       if (isTypedLettersValidated) return;
 
+      const attempsCounter: number = attemps + 1;
+      setAttemps(attempsCounter);
+
       const isWinner = validateWinGame(validatedTypedLetters, secretWord);
 
       if (isWinner) {
         const currentWins: string =
           `${Number(localStorage.getItem('wins')) + 1}` || '0';
+        const playedGames: string =
+          `${Number(localStorage.getItem('games')) + 1}` || '0';
+
         localStorage.setItem('wins', currentWins);
+        localStorage.setItem('games', playedGames);
         setOpenStatistics(true);
       }
 
@@ -123,15 +127,11 @@ function App() {
   }, [secretWord, typedLetters]);
 
   useEffect(() => {
-    console.log(attemps);
-
     if (attemps === 5) {
       const playedGames: string =
         `${Number(localStorage.getItem('games')) + 1}` || '0';
 
       localStorage.setItem('games', playedGames);
-
-      console.log('llega');
 
       setOpenStatistics(true);
     }
