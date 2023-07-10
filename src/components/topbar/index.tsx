@@ -66,6 +66,7 @@ export const TopBar: React.FC<TopBarProps> = props => {
         handler={handlerCloseStatisticsDialog}
         secretWord={secretWord}
         seconds={seconds}
+        showWord={!seconds}
       />
     </div>
   );
