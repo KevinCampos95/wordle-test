@@ -18,7 +18,7 @@ function App() {
   const [attemps, setAttemps] = useState<number>(0);
   const [resetEmptyCards, setResetEmptyCards] = useState<boolean>(false);
   const [openStatistics, setOpenStatistics] = useState<boolean>(false);
-  const [seconds, setSeconds] = useState<number>(300); // Cambiar al valor deseado
+  const [seconds, setSeconds] = useState<number>(300);
 
   const fetchWords = async () => {
     try {
@@ -77,7 +77,7 @@ function App() {
     setHasTypedLetter(false);
     setResetEmptyCards(true);
     setOpenStatistics(false);
-    localStorage.setItem('seconds', String(300));
+    setSeconds(300);
   };
 
   useEffect(() => {
