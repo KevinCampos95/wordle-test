@@ -18,6 +18,7 @@ function App() {
   const [attemps, setAttemps] = useState<number>(0);
   const [resetEmptyCards, setResetEmptyCards] = useState<boolean>(false);
   const [openStatistics, setOpenStatistics] = useState<boolean>(false);
+  const [seconds, setSeconds] = useState<number>(300); // Cambiar al valor deseado
 
   const fetchWords = async () => {
     try {
@@ -76,7 +77,18 @@ function App() {
     setHasTypedLetter(false);
     setResetEmptyCards(true);
     setOpenStatistics(false);
+    localStorage.setItem('seconds', String(300));
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds - 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   useEffect(() => {
     if (!secretWord.length) {
@@ -137,6 +149,14 @@ function App() {
     }
   }, [attemps]);
 
+  useEffect(() => {
+    localStorage.setItem('seconds', String(seconds));
+
+    if (seconds === 0) {
+      generateNewGame();
+    }
+  }, [seconds]);
+
   return (
     <div className='App mt-8 flex h-screen w-full justify-center font-roboto text-black'>
       <div>
@@ -144,6 +164,7 @@ function App() {
           secretWord={secretWord}
           openStatistics={openStatistics}
           onCloseStatisticsModal={generateNewGame}
+          seconds={seconds}
         />
         <LetterInputs
           items={typedLetters}

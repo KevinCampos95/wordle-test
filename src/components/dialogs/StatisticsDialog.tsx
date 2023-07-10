@@ -1,9 +1,10 @@
 import Dialog from '../common/dialog';
 import { Button } from '@material-tailwind/react';
 import { StatisticsDialogProps } from '../../global/types';
+import { formatTime } from '../../global/utils';
 
 export const StatisticsDialog = (props: StatisticsDialogProps) => {
-  const { handler, openDialog, showWord = true, secretWord } = props;
+  const { handler, openDialog, showWord = true, secretWord, seconds } = props;
 
   const handleClose = (newGame: boolean) => {
     handler(newGame);
@@ -39,7 +40,9 @@ export const StatisticsDialog = (props: StatisticsDialogProps) => {
         </div>
       )}
       <div className='mb-4 w-full text-center'>SIGUIENTE PALABRA</div>
-      <div className='mb-12 w-full text-center font-extrabold'>04:10</div>
+      <div className='mb-12 w-full text-center font-extrabold'>
+        {formatTime(seconds)}
+      </div>
       <div className='w-100 flex justify-center'>
         <Button
           className='w-256 bg-letterCard-bg-success py-2.5 text-3xl font-extrabold capitalize leading-32 text-white'
