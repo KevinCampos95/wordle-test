@@ -41,7 +41,7 @@ export const StatisticsDialog = (props: StatisticsDialogProps) => {
       )}
       <div className='mb-4 w-full text-center'>SIGUIENTE PALABRA</div>
       <div className='mb-12 w-full text-center font-extrabold'>
-        {formatTime(seconds)}
+        {seconds >= 0 ? formatTime(seconds) : '00:00'}
       </div>
       <div className='w-100 flex justify-center'>
         <Button

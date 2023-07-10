@@ -92,3 +92,17 @@ export const formatTime = (seconds: number) => {
 
   return `${formattedMinutes}:${formattedSeconds}`;
 };
+
+export const addPlayedGame = () => {
+  const playedGames: string =
+    `${Number(localStorage.getItem('games')) + 1}` || '0';
+
+  localStorage.setItem('games', playedGames);
+};
+
+export const addWinnedGame = () => {
+  const currentWins: string =
+    `${Number(localStorage.getItem('wins')) + 1}` || '0';
+
+  localStorage.setItem('wins', currentWins);
+};

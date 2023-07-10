@@ -9,6 +9,8 @@ import {
   validateLetters,
   arraysAreEqual,
   validateWinGame,
+  addPlayedGame,
+  addWinnedGame,
 } from './global/utils';
 
 function App() {
@@ -124,13 +126,8 @@ function App() {
       const isWinner = validateWinGame(validatedTypedLetters, secretWord);
 
       if (isWinner) {
-        const currentWins: string =
-          `${Number(localStorage.getItem('wins')) + 1}` || '0';
-        const playedGames: string =
-          `${Number(localStorage.getItem('games')) + 1}` || '0';
-
-        localStorage.setItem('wins', currentWins);
-        localStorage.setItem('games', playedGames);
+        addWinnedGame();
+        addPlayedGame();
         setOpenStatistics(true);
       }
 
@@ -140,11 +137,7 @@ function App() {
 
   useEffect(() => {
     if (attemps === 5) {
-      const playedGames: string =
-        `${Number(localStorage.getItem('games')) + 1}` || '0';
-
-      localStorage.setItem('games', playedGames);
-
+      addPlayedGame();
       setOpenStatistics(true);
     }
   }, [attemps]);
@@ -153,7 +146,8 @@ function App() {
     localStorage.setItem('seconds', String(seconds));
 
     if (seconds === 0) {
-      generateNewGame();
+      addPlayedGame();
+      setOpenStatistics(true);
     }
   }, [seconds]);
 
