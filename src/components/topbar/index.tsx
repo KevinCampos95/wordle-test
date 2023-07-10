@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import { TopBarProps } from '../../global/types';
 import { ReactComponent as QuestionIcon } from '../../assets/question-icon.svg';
 import { ReactComponent as StatisticsIcon } from '../../assets/statistics-icon.svg';
 import InstructionsDialog from '../dialogs/InstructionsDialog';
 import StatisticsDialog from '../dialogs/StatisticsDialog';
 
-export const TopBar = () => {
+export const TopBar: React.FC<TopBarProps> = props => {
+  const { openStatistics, secretWord } = props;
+
   const [openInstructionsDialog, setOpenInstructionsDialog] =
     useState<boolean>(false);
   const [openStatisticsDialog, setOpenStatisticsDialog] =
@@ -31,8 +34,14 @@ export const TopBar = () => {
     if (isFirstLogin) {
       handlerOpenInstructionsDialog();
       localStorage.setItem('first_login', 'true');
+      localStorage.setItem('games', '0');
+      localStorage.setItem('wins', '0');
     }
   }, []);
+
+  useEffect(() => {
+    if (openStatistics) setOpenStatisticsDialog(true);
+  }, [openStatistics]);
 
   return (
     <div className='flex h-84 w-screen max-w-638 items-center justify-between rounded-15 bg-paper01 px-4 py-2'>
@@ -54,6 +63,7 @@ export const TopBar = () => {
       <StatisticsDialog
         openDialog={openStatisticsDialog}
         handler={handlerCloseStatisticsDialog}
+        secretWord={secretWord}
       />
     </div>
   );

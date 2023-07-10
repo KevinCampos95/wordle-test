@@ -1,14 +1,9 @@
 import Dialog from '../common/dialog';
 import { Button } from '@material-tailwind/react';
-
-interface StatisticsDialogProps {
-  openDialog: boolean;
-  handler: () => void;
-  showWord?: boolean;
-}
+import { StatisticsDialogProps } from '../../global/types';
 
 export const StatisticsDialog = (props: StatisticsDialogProps) => {
-  const { handler, openDialog, showWord = true } = props;
+  const { handler, openDialog, showWord = true, secretWord } = props;
 
   const handleClose = () => {
     handler();
@@ -25,17 +20,22 @@ export const StatisticsDialog = (props: StatisticsDialogProps) => {
       </div>
       <div className='mb-8 flex w-full justify-between text-center'>
         <div className='w-5/12'>
-          <div className='mb-4 text-center text-4xl font-extrabold'>8</div>
+          <div className='mb-4 text-center text-4xl font-extrabold'>
+            {localStorage.getItem('games')}
+          </div>
           <div className='mb-4'>Jugadas</div>
         </div>
         <div className='w-5/12'>
-          <div className='mb-4 text-center text-4xl font-extrabold'>0</div>
+          <div className='mb-4 text-center text-4xl font-extrabold'>
+            {localStorage.getItem('wins')}
+          </div>
           <div className='mb-4'>Victorias</div>
         </div>
       </div>
       {showWord && (
         <div className='mb-8 w-full text-center'>
-          La palabra era: <span className='font-extrabold'>PERRO</span>
+          La palabra era:{' '}
+          <span className='font-extrabold'>{secretWord.join('')}</span>
         </div>
       )}
       <div className='mb-4 w-full text-center'>SIGUIENTE PALABRA</div>

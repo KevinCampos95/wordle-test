@@ -34,4 +34,16 @@ export interface LetterInputsProps {
     validatedLetters?: TypedLetterProps[];
     resetCards: boolean;
     cleanedCards: () => void;
-  }
+}
+
+export interface TopBarProps {
+    secretWord: Array<string>,
+    openStatistics: boolean;
+}
+
+export interface StatisticsDialogProps {
+    openDialog: boolean;
+    handler: () => void;
+    showWord?: boolean;
+    secretWord: Array<string>,
+}

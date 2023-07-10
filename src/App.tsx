@@ -13,6 +13,7 @@ function App() {
   const [hasTypedLetter, setHasTypedLetter] = useState<boolean>(false);
   const [attemps, setAttemps] = useState<number>(0);
   const [resetEmptyCards, setResetEmptyCards] = useState<boolean>(false);
+  const [openStatistics, setOpenStatistics] = useState<boolean>(false);
 
   const fetchWords = async () => {
     try {
@@ -70,6 +71,7 @@ function App() {
     setTypedLetters([]);
     setHasTypedLetter(false);
     setResetEmptyCards(true);
+    setOpenStatistics(true);
   };
 
   useEffect(() => {
@@ -118,7 +120,7 @@ function App() {
   return (
     <div className='App mt-8 flex h-screen w-full justify-center font-roboto text-black'>
       <div>
-        <TopBar />
+        <TopBar secretWord={secretWord} openStatistics={openStatistics} />
         <LetterInputs
           items={typedLetters}
           resetCards={resetEmptyCards}
