@@ -69,7 +69,7 @@ function App() {
     setHasTypedLetter(true);
   };
 
-  const clearGame = () => {
+  const generateNewGame = () => {
     fetchWords();
     setAttemps(0);
     setTypedLetters([]);
@@ -97,6 +97,9 @@ function App() {
 
   useEffect(() => {
     if (typedLetters.length !== 0 && typedLetters.length % 5 === 0) {
+      const attempsCounter: number = attemps + 1;
+      setAttemps(attempsCounter);
+
       const validatedTypedLetters = validateLetters(secretWord, typedLetters);
 
       const isTypedLettersValidated: boolean = arraysAreEqual(
@@ -115,17 +118,20 @@ function App() {
         setOpenStatistics(true);
       }
 
-      setAttemps(prevAttemps => prevAttemps + 1);
       setTypedLetters(validatedTypedLetters);
     }
   }, [secretWord, typedLetters]);
 
   useEffect(() => {
+    console.log(attemps);
+
     if (attemps === 5) {
       const playedGames: string =
         `${Number(localStorage.getItem('games')) + 1}` || '0';
 
       localStorage.setItem('games', playedGames);
+
+      console.log('llega');
 
       setOpenStatistics(true);
     }
@@ -137,7 +143,7 @@ function App() {
         <TopBar
           secretWord={secretWord}
           openStatistics={openStatistics}
-          onCloseStatisticsModal={clearGame}
+          onCloseStatisticsModal={generateNewGame}
         />
         <LetterInputs
           items={typedLetters}
