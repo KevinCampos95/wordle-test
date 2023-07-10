@@ -5,6 +5,7 @@ import { LetterCardBackgrounds } from '../../global/enums';
 
 interface LetterInputsProps {
   items?: TypedLetterProps[];
+  validatedLetters?: TypedLetterProps[];
 }
 
 const LetterInputs: React.FC<LetterInputsProps> = ({ items = [] }) => {

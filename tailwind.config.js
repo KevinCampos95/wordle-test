@@ -24,7 +24,7 @@ theme: {
       'letterCard-bg-warning': '#CEB02C',
       'letterCard-bg-success': '#66A060',
       'letterCard-bg-error': 'rgba(147, 155, 159, 0.3)',
-      'letterCard-bg-wrong': '#818181',
+      'letterCard-bg-wrong': '#939B9F',
       'letterCard-text-default': '#56575E',
     },
     height: {

@@ -2,30 +2,9 @@ import LetterCard from '../letterCard';
 import { qwertyKeyboard } from '../../../global/constants';
 import { ReactComponent as UnionIcon } from '../../../assets/union-icon.svg';
 import { KeyboardCardProps } from '../../../global/types';
-import { LetterCardBackgrounds } from '../../../global/enums';
 
 export const KeyboardCard: React.FC<KeyboardCardProps> = props => {
-  const {
-    onKeyPress,
-    typedLetters = [
-      {
-        letter: 'T',
-        backgroundColor: LetterCardBackgrounds.Wrong,
-      },
-      {
-        letter: 'O',
-        backgroundColor: LetterCardBackgrounds.Wrong,
-      },
-      {
-        letter: 'G',
-        backgroundColor: LetterCardBackgrounds.Success,
-      },
-      {
-        letter: 'C',
-        backgroundColor: LetterCardBackgrounds.Warning,
-      },
-    ],
-  } = props;
+  const { onKeyPress, typedLetters } = props;
 
   const handleKeyPress = (key: string) => {
     onKeyPress(key);
@@ -36,9 +15,9 @@ export const KeyboardCard: React.FC<KeyboardCardProps> = props => {
       typedItem => typedItem.letter === item,
     );
 
-    let border: string = '';
-    let backgroundColor: string = '';
-    let letterColor: string = 'text-letterCard-text-default';
+    let border = '';
+    let backgroundColor = '';
+    let letterColor = 'text-letterCard-text-default';
 
     if (typedLetter) {
       border = typedLetter.border || '';

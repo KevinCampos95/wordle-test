@@ -26,6 +26,6 @@ export interface LetterCardProps {
 
 export interface KeyboardCardProps {
     onKeyPress: (key: string) => void;
-    typedLetters?: TypedLetterProps[];
+    typedLetters: TypedLetterProps[];
 }
   
