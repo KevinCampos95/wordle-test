@@ -12,6 +12,7 @@ function App() {
   const [typedLetters, setTypedLetters] = useState<TypedLetterProps[]>([]);
   const [hasTypedLetter, setHasTypedLetter] = useState<boolean>(false);
   const [attemps, setAttemps] = useState<number>(0);
+  const [resetEmptyCards, setResetEmptyCards] = useState<boolean>(false);
 
   const fetchWords = async () => {
     try {
@@ -68,6 +69,7 @@ function App() {
     setAttemps(0);
     setTypedLetters([]);
     setHasTypedLetter(false);
+    setResetEmptyCards(true);
   };
 
   useEffect(() => {
@@ -117,7 +119,11 @@ function App() {
     <div className='App mt-8 flex h-screen w-full justify-center font-roboto text-black'>
       <div>
         <TopBar />
-        <LetterInputs items={typedLetters} />
+        <LetterInputs
+          items={typedLetters}
+          resetCards={resetEmptyCards}
+          cleanedCards={() => setResetEmptyCards(false)}
+        />
         <KeyboardCard
           onKeyPress={handleKeyDownKeyboard}
           typedLetters={typedLetters || []}

@@ -29,3 +29,9 @@ export interface KeyboardCardProps {
     typedLetters: TypedLetterProps[];
 }
   
+export interface LetterInputsProps {
+    items?: TypedLetterProps[];
+    validatedLetters?: TypedLetterProps[];
+    resetCards: boolean;
+    cleanedCards: () => void;
+  }

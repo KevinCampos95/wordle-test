@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { TypedLetterProps } from '../../global/types';
 import LetterCard from '../cards/letterCard';
 import { LetterCardBackgrounds } from '../../global/enums';
+import { LetterInputsProps } from '../../global/types';
 
-interface LetterInputsProps {
-  items?: TypedLetterProps[];
-  validatedLetters?: TypedLetterProps[];
-}
+const LetterInputs: React.FC<LetterInputsProps> = props => {
+  const { items = [], resetCards, cleanedCards } = props;
 
-const LetterInputs: React.FC<LetterInputsProps> = ({ items = [] }) => {
   const [emptyCards, setEmptyCards] = useState<number>(25);
 
   const matchedItems = items.slice(0, items.length).map((item, index) => {
@@ -26,6 +23,13 @@ const LetterInputs: React.FC<LetterInputsProps> = ({ items = [] }) => {
       setEmptyCards(emptyCards - 1);
     }
   }, [items]);
+
+  useEffect(() => {
+    if (resetCards) {
+      setEmptyCards(25);
+      cleanedCards();
+    }
+  }, [resetCards]);
 
   return (
     <div className='mb-8 mt-16 flex w-638 max-w-638 flex-wrap justify-center gap-3 px-20'>
