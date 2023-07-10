@@ -39,11 +39,12 @@ export interface LetterInputsProps {
 export interface TopBarProps {
     secretWord: Array<string>,
     openStatistics: boolean;
+    onCloseStatisticsModal: () => void;
 }
 
 export interface StatisticsDialogProps {
     openDialog: boolean;
-    handler: () => void;
+    handler: (newGame: boolean) => void;
     showWord?: boolean;
     secretWord: Array<string>,
 }

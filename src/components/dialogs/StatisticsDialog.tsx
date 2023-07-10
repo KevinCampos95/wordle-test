@@ -5,8 +5,8 @@ import { StatisticsDialogProps } from '../../global/types';
 export const StatisticsDialog = (props: StatisticsDialogProps) => {
   const { handler, openDialog, showWord = true, secretWord } = props;
 
-  const handleClose = () => {
-    handler();
+  const handleClose = (newGame: boolean) => {
+    handler(newGame);
   };
 
   return (
@@ -43,9 +43,9 @@ export const StatisticsDialog = (props: StatisticsDialogProps) => {
       <div className='w-100 flex justify-center'>
         <Button
           className='w-256 bg-letterCard-bg-success py-2.5 text-3xl font-extrabold capitalize leading-32 text-white'
-          onClick={handleClose}
+          onClick={() => handleClose(true)}
         >
-          Aceptar
+          Nueva partida
         </Button>
       </div>
     </Dialog>

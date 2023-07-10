@@ -71,7 +71,6 @@ function App() {
     setTypedLetters([]);
     setHasTypedLetter(false);
     setResetEmptyCards(true);
-    setOpenStatistics(true);
   };
 
   useEffect(() => {
@@ -90,6 +89,8 @@ function App() {
       setHasTypedLetter(false);
     };
   }, [hasTypedLetter]);
+
+  console.log(secretWord);
 
   useEffect(() => {
     if (typedLetters.length !== 0 && typedLetters.length % 5 === 0) {
@@ -113,14 +114,20 @@ function App() {
         `${Number(localStorage.getItem('games')) + 1}` || '0';
 
       localStorage.setItem('games', playedGames);
-      clearGame();
+      console.log(attemps);
+
+      setOpenStatistics(true);
     }
   }, [attemps]);
 
   return (
     <div className='App mt-8 flex h-screen w-full justify-center font-roboto text-black'>
       <div>
-        <TopBar secretWord={secretWord} openStatistics={openStatistics} />
+        <TopBar
+          secretWord={secretWord}
+          openStatistics={openStatistics}
+          onCloseStatisticsModal={clearGame}
+        />
         <LetterInputs
           items={typedLetters}
           resetCards={resetEmptyCards}

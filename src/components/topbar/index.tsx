@@ -6,7 +6,7 @@ import InstructionsDialog from '../dialogs/InstructionsDialog';
 import StatisticsDialog from '../dialogs/StatisticsDialog';
 
 export const TopBar: React.FC<TopBarProps> = props => {
-  const { openStatistics, secretWord } = props;
+  const { openStatistics, secretWord, onCloseStatisticsModal } = props;
 
   const [openInstructionsDialog, setOpenInstructionsDialog] =
     useState<boolean>(false);
@@ -25,8 +25,9 @@ export const TopBar: React.FC<TopBarProps> = props => {
     setOpenInstructionsDialog(false);
   };
 
-  const handlerCloseStatisticsDialog = () => {
+  const handlerCloseStatisticsDialog = (newGame: boolean) => {
     setOpenStatisticsDialog(false);
+    if (newGame) onCloseStatisticsModal();
   };
 
   useEffect(() => {
