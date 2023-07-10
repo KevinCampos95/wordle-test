@@ -37,14 +37,16 @@ export interface LetterInputsProps {
 }
 
 export interface TopBarProps {
-    secretWord: Array<string>,
+    secretWord: Array<string>;
     openStatistics: boolean;
     onCloseStatisticsModal: () => void;
+    seconds: number;
 }
 
 export interface StatisticsDialogProps {
     openDialog: boolean;
     handler: (newGame: boolean) => void;
     showWord?: boolean;
-    secretWord: Array<string>,
+    secretWord: Array<string>;
+    seconds: number;
 }

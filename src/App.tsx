@@ -9,6 +9,8 @@ import {
   validateLetters,
   arraysAreEqual,
   validateWinGame,
+  addPlayedGame,
+  addWinnedGame,
 } from './global/utils';
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
   const [attemps, setAttemps] = useState<number>(0);
   const [resetEmptyCards, setResetEmptyCards] = useState<boolean>(false);
   const [openStatistics, setOpenStatistics] = useState<boolean>(false);
+  const [seconds, setSeconds] = useState<number>(300);
 
   const fetchWords = async () => {
     try {
@@ -69,14 +72,25 @@ function App() {
     setHasTypedLetter(true);
   };
 
-  const clearGame = () => {
+  const generateNewGame = () => {
     fetchWords();
     setAttemps(0);
     setTypedLetters([]);
     setHasTypedLetter(false);
     setResetEmptyCards(true);
     setOpenStatistics(false);
+    setSeconds(300);
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds - 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   useEffect(() => {
     if (!secretWord.length) {
@@ -106,30 +120,36 @@ function App() {
 
       if (isTypedLettersValidated) return;
 
+      const attempsCounter: number = attemps + 1;
+      setAttemps(attempsCounter);
+
       const isWinner = validateWinGame(validatedTypedLetters, secretWord);
 
       if (isWinner) {
-        const currentWins: string =
-          `${Number(localStorage.getItem('wins')) + 1}` || '0';
-        localStorage.setItem('wins', currentWins);
+        addWinnedGame();
+        addPlayedGame();
         setOpenStatistics(true);
       }
 
-      setAttemps(prevAttemps => prevAttemps + 1);
       setTypedLetters(validatedTypedLetters);
     }
   }, [secretWord, typedLetters]);
 
   useEffect(() => {
     if (attemps === 5) {
-      const playedGames: string =
-        `${Number(localStorage.getItem('games')) + 1}` || '0';
-
-      localStorage.setItem('games', playedGames);
-
+      addPlayedGame();
       setOpenStatistics(true);
     }
   }, [attemps]);
+
+  useEffect(() => {
+    localStorage.setItem('seconds', String(seconds));
+
+    if (seconds === 0) {
+      addPlayedGame();
+      setOpenStatistics(true);
+    }
+  }, [seconds]);
 
   return (
     <div className='App mt-8 flex h-screen w-full justify-center font-roboto text-black'>
@@ -137,7 +157,8 @@ function App() {
         <TopBar
           secretWord={secretWord}
           openStatistics={openStatistics}
-          onCloseStatisticsModal={clearGame}
+          onCloseStatisticsModal={generateNewGame}
+          seconds={seconds}
         />
         <LetterInputs
           items={typedLetters}

@@ -6,7 +6,7 @@ import InstructionsDialog from '../dialogs/InstructionsDialog';
 import StatisticsDialog from '../dialogs/StatisticsDialog';
 
 export const TopBar: React.FC<TopBarProps> = props => {
-  const { openStatistics, secretWord, onCloseStatisticsModal } = props;
+  const { openStatistics, secretWord, seconds, onCloseStatisticsModal } = props;
 
   const [openInstructionsDialog, setOpenInstructionsDialog] =
     useState<boolean>(false);
@@ -65,6 +65,7 @@ export const TopBar: React.FC<TopBarProps> = props => {
         openDialog={openStatisticsDialog}
         handler={handlerCloseStatisticsDialog}
         secretWord={secretWord}
+        seconds={seconds}
       />
     </div>
   );

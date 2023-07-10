@@ -15,12 +15,17 @@ const LetterInputs: React.FC<LetterInputsProps> = props => {
       letterColor: item.letterColor,
       border: item.border,
     };
-    return <LetterCard key={index} {...letterCardProps} />;
+    return (
+      <LetterCard
+        key={`${index}${item.letter}${item.border}${item.backgroundColor}`}
+        {...letterCardProps}
+      />
+    );
   });
 
   const emptyItems = Array.from({ length: emptyCards }).map((_, index) => (
     <LetterCard
-      key={index}
+      key={`${index}${emptyCards}`}
       letter=''
       backgroundColor={LetterCardBackgrounds.Error}
     />
@@ -29,7 +34,6 @@ const LetterInputs: React.FC<LetterInputsProps> = props => {
   useEffect(() => {
     if (items.length) {
       const emptyCount: number = 25 - items.length;
-      console.log(items.length, emptyCards, '-------------');
 
       setEmptyCards(emptyCount);
     }

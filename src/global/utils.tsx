@@ -82,3 +82,27 @@ export const validateWinGame = (
 
   return isWinner;
 };
+
+export const formatTime = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+  return `${formattedMinutes}:${formattedSeconds}`;
+};
+
+export const addPlayedGame = () => {
+  const playedGames: string =
+    `${Number(localStorage.getItem('games')) + 1}` || '0';
+
+  localStorage.setItem('games', playedGames);
+};
+
+export const addWinnedGame = () => {
+  const currentWins: string =
+    `${Number(localStorage.getItem('wins')) + 1}` || '0';
+
+  localStorage.setItem('wins', currentWins);
+};
